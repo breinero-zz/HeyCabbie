@@ -1,6 +1,6 @@
 package com.bryanreinero.taxi.fare;
 
-import com.bryanreinero.taxi.webapp.Snapshot;
+import com.bryanreinero.lambda.Snapshot;
 import org.bson.Document;
 
 import java.util.HashSet;

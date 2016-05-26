@@ -1,4 +1,4 @@
-package com.bryanreinero.taxi.webapp;
+package com.bryanreinero.lambda;
 
 import com.bryanreinero.firehose.metrics.SampleSet;
 import com.bryanreinero.taxi.codec.TaxiLogCodec;
@@ -44,7 +44,7 @@ public class myServletListener implements ServletContextListener {
         );
 
         SampleSet stats = new SampleSet();
-        stats.start();
+        //stats.start();
         sc.setAttribute( "stats", stats );
     }
 

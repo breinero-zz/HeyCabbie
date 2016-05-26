@@ -3,11 +3,11 @@ package com.bryanreinero.taxi.distance;
 import com.bryanreinero.firehose.metrics.Format;
 import com.bryanreinero.firehose.metrics.Interval;
 import com.bryanreinero.firehose.metrics.SampleSet;
-import com.bryanreinero.taxi.webapp.LogReplayer;
-import com.bryanreinero.taxi.webapp.Snapshot;
 import com.bryanreinero.taxi.RunningTotal;
 import com.bryanreinero.taxi.TaxiLog;
 import com.bryanreinero.taxi.codec.TaxiLogCodec;
+import com.bryanreinero.lambda.LogReplayer;
+import com.bryanreinero.lambda.Snapshot;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
@@ -85,8 +85,12 @@ public class Taxi_WithSnaps {
 
         Random rand = new Random();
         Integer ts = (int)( System.currentTimeMillis() / 1000  );
-        for( int i = 0; i < 10; i++ )
-            taxi.replayLogs(rand.nextInt(ts));
+        //for( int i = 0; i < 10; i++ )
+        //    taxi.replayLogs(rand.nextInt(ts));
+
+
+        taxi.replayLogs( 1211019599 );
+        String entry = taxi.report();
 
         System.out.println( taxi.report() );
     }

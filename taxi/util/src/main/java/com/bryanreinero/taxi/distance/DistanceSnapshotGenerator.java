@@ -2,9 +2,7 @@ package com.bryanreinero.taxi.distance;
 
 import com.bryanreinero.taxi.TaxiLog;
 import com.bryanreinero.taxi.codec.TaxiLogCodec;
-import com.bryanreinero.taxi.webapp.LogReplayer;
-import com.bryanreinero.taxi.TaxiLog;
-import com.bryanreinero.taxi.codec.TaxiLogCodec;
+import com.bryanreinero.lambda.LogReplayer;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;

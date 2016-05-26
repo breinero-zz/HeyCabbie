@@ -1,6 +1,6 @@
 package com.bryanreinero.taxi;
 
-import com.bryanreinero.taxi.webapp.LogReplayer;
+import com.bryanreinero.lambda.LogReplayer;
 import com.bryanreinero.taxi.codec.TaxiLogCodec;
 import com.bryanreinero.taxi.distance.DistanceTotals;
 import com.mongodb.MongoClient;

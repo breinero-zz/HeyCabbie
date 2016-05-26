@@ -1,16 +1,18 @@
 package com.bryanreinero.taxi.fare;
 
-import com.bryanreinero.taxi.webapp.Snapshot;
-import com.bryanreinero.taxi.webapp.ViewBuilder;
 import com.bryanreinero.taxi.TaxiLog;
+import com.bryanreinero.lambda.Snapshot;
+import com.bryanreinero.lambda.ViewBuilder;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by brein on 5/21/2016.
  */
-public class FareBuilderWithSnap implements ViewBuilder<TaxiLog, Snapshot<Fare>> {
+public class FareBuilderWithSnap implements ViewBuilder<TaxiLog, String> {
 
     private Integer start, end;
 
@@ -52,13 +54,34 @@ public class FareBuilderWithSnap implements ViewBuilder<TaxiLog, Snapshot<Fare>>
     }
 
     @Override
-    public Snapshot<Fare> getView() {
+    public String getView() {
 
-        Snapshot<Fare> snapshot = new Snapshot<>( start, end );
+        StringBuffer buf = new StringBuffer();
 
-        for( Map.Entry<String, Fare> e : faresInProgress.entrySet() )
-            snapshot.add( e.getValue() );
+        buf.append( "{ \"fares\": [");
 
-        return snapshot;
+        Iterator< Map.Entry<String, Fare> > it = faresInProgress.entrySet().iterator();
+        while(it.hasNext() ) {
+
+            Fare f = it.next().getValue();
+            buf.append("{  \"taxi\": \""+f.getId()+"\"," );
+            buf.append("\n\"start\": "+f.getStart()+",");
+            buf.append("\n\"end\": "+f.getEnd()+"," );
+
+            buf.append("\"route\": [");
+            Iterator<List<Double>> iterator = f.getRoute().iterator();
+            while( iterator.hasNext() ) {
+                List<Double> list = iterator.next();
+                buf.append("[ " + list.get(0) + ", " + list.get(1) + " ]");
+                if( iterator.hasNext() )
+                    buf.append(",");
+            }
+            buf.append("\n]\n}");
+            if( it.hasNext() )
+                buf.append(",");
+        }
+
+        buf.append("\n\t]\n}");
+        return buf.toString();
     }
 }

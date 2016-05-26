@@ -6,7 +6,7 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
     <listener>
-        <listener-class>com.bryanreinero.taxi.webapp.myServletListener</listener-class>
+        <listener-class>com.bryanreinero.lambda.myServletListener</listener-class>
     </listener>
     <context-param>
         <param-name>mongoHost</param-name>
@@ -18,7 +18,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     </context-param>
     <servlet>
         <servlet-name>Distance</servlet-name>
-        <servlet-class>com.bryanreinero.taxi.webapp.DistanceServlet</servlet-class>
+        <servlet-class>com.bryanreinero.lambda.LambdaServlet</servlet-class>
         <init-param>
             <param-name>db</param-name>
             <param-value>taxi</param-value>
@@ -30,6 +30,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <init-param>
             <param-name>snapshots</param-name>
             <param-value>distSnap600</param-value>
+        </init-param>
+        <init-param>
+            <param-name>snapshotInterval</param-name>
+            <param-value>600</param-value>
         </init-param>
         <init-param>
             <param-name>snapshotOperationName</param-name>
@@ -47,7 +51,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
     <servlet>
         <servlet-name>Fare</servlet-name>
-        <servlet-class>com.bryanreinero.taxi.webapp.DistanceServlet</servlet-class>
+        <servlet-class>com.bryanreinero.lambda.LambdaServlet</servlet-class>
         <init-param>
             <param-name>db</param-name>
             <param-value>taxi</param-value>
@@ -61,6 +65,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
             <param-value>fareSnap600</param-value>
         </init-param>
         <init-param>
+            <param-name>snapshotInterval</param-name>
+            <param-value>600</param-value>
+        </init-param>
+        <init-param>
             <param-name>snapshotOperationName</param-name>
             <param-value>getFareSnap</param-value>
         </init-param><init-param>
@@ -72,6 +80,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
             <param-value>com.bryanreinero.taxi.fare.SnapshotConverter</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>Statistics</servlet-name>
+        <servlet-class>com.bryanreinero.lambda.StatisticsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Statistics</servlet-name>
+        <url-pattern>/stats</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Fare</servlet-name>
         <url-pattern>/fare</url-pattern>

@@ -4,10 +4,8 @@ import com.bryanreinero.firehose.metrics.Interval;
 import com.bryanreinero.firehose.metrics.SampleSet;
 import com.bryanreinero.taxi.TaxiLog;
 import com.bryanreinero.taxi.codec.TaxiLogCodec;
-import com.bryanreinero.taxi.webapp.LogReplayer;
-import com.bryanreinero.taxi.webapp.Snapshot;
-import com.bryanreinero.taxi.TaxiLog;
-import com.bryanreinero.taxi.codec.TaxiLogCodec;
+import com.bryanreinero.lambda.LogReplayer;
+import com.bryanreinero.lambda.Snapshot;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
@@ -70,7 +68,8 @@ public class CurrentFaresApp {
     }
 
     public void report() {
-        System.out.println( SnapshotConverter.convertToGEOSON( builder.getView() ) );
+
+        //System.out.println( SnapshotConverter.convertToGEOSON( builder.getView() ) );
     }
 
     public static void main( String[] args ) {

@@ -3,8 +3,8 @@ package com.bryanreinero.taxi.distance;
 import com.bryanreinero.taxi.Haversine;
 import com.bryanreinero.taxi.RunningTotal;
 import com.bryanreinero.taxi.TaxiLog;
-import com.bryanreinero.taxi.webapp.Snapshot;
-import com.bryanreinero.taxi.webapp.ViewBuilder;
+import com.bryanreinero.lambda.Snapshot;
+import com.bryanreinero.lambda.ViewBuilder;
 
 import java.util.HashMap;
 import java.util.Map;

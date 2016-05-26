@@ -1,7 +1,7 @@
 package com.bryanreinero.taxi.fare;
 
-import com.bryanreinero.taxi.webapp.Snapshot;
-import com.bryanreinero.taxi.webapp.ViewBuilder;
+import com.bryanreinero.lambda.Snapshot;
+import com.bryanreinero.lambda.ViewBuilder;
 import com.bryanreinero.taxi.TaxiLog;
 
 import java.util.*;

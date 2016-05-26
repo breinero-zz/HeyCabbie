@@ -1,4 +1,4 @@
-package com.bryanreinero.taxi.webapp;
+package com.bryanreinero.lambda;
 
 import com.mongodb.Block;
 import com.mongodb.client.MongoCollection;
@@ -31,11 +31,6 @@ public class LogReplayer <T>{
     };
 
     public void replayLogs ( Integer startTime, Integer endTime   ) {
-
-        //System.out.println( "Generating start: "+startTime+" end: "+endTime );
-        // logs.find( and( lte( "ts", endTime ), gt( "ts", startTime ) ) ).sort( ascending(
-        //        //"ts" )).forEach( handleLog );
-
         logs.find(
                 Filters.and( Filters.lte( "_id.ts", endTime ), Filters.gt( "_id.ts", startTime ) )
         ).forEach( handleLog );

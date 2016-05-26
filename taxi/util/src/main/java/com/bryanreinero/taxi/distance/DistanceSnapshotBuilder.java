@@ -1,11 +1,10 @@
 package com.bryanreinero.taxi.distance;
 
 import com.bryanreinero.taxi.Haversine;
-import com.bryanreinero.taxi.webapp.Snapshot;
-import com.bryanreinero.taxi.webapp.ViewBuilder;
-import com.bryanreinero.taxi.Haversine;
 import com.bryanreinero.taxi.RunningTotal;
 import com.bryanreinero.taxi.TaxiLog;
+import com.bryanreinero.lambda.Snapshot;
+import com.bryanreinero.lambda.ViewBuilder;
 import com.mongodb.client.MongoCollection;
 
 import java.util.HashMap;
@@ -41,7 +40,7 @@ public class DistanceSnapshotBuilder implements ViewBuilder<TaxiLog, Snapshot<Ru
             System.out.println( "writing snapshot at "+nextSnapTS );
             Snapshot<RunningTotal> snapshot = new Snapshot( log.getTimestamp() , nextSnapTS  );
             runningTotals.values().forEach( rt -> snapshot.add( rt ) );
-            snapshots.insertOne( DistanceSnapshotConverter.convert(snapshot) );
+            snapshots.insertOne( SnapToDocConverter.convert(snapshot) );
             nextSnapTS += interval;
         }
 
