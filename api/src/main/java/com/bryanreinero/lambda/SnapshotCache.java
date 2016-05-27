@@ -48,4 +48,8 @@ public class SnapshotCache {
             return snap[0];
         }
     }
+
+    public void evict( Integer key ) {
+        cache.remove( key );
+    }
 }
