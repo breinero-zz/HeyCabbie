@@ -5,24 +5,22 @@ package com.bryanreinero.bitcoin;
  */
 public class TransactionInput {
 
-    private final String hash;
-    private final Double value;
+    private final String address;
+    private final Long value;
     private final String script;
     private final Integer index;
 
 
-    public TransactionInput(String hash, Double value, String script, Integer index) {
-        this.hash = hash;
+    public TransactionInput(String address, Long value, String script, Integer index) {
+        this.address = address;
         this.value = value;
         this.script = script;
         this.index = index;
     }
 
-    public String getHash() {
-        return hash;
-    }
+    public String getAddress() { return address; }
 
-    public Double getValue() {
+    public Long getValue() {
         return value;
     }
 

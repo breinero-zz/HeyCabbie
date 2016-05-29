@@ -5,30 +5,28 @@ package com.bryanreinero.bitcoin;
  */
 public class TransactionOutput {
 
-    private final String hash;
     private final String address;
-    private final Double value;
+    private final Long value;
     private final String script;
+    private final Integer index;
 
 
-    public TransactionOutput(String hash, String address, Double value, String script, Integer index) {
-        this.hash = hash;
+    public TransactionOutput( String address, Long value, String script, Integer index ) {
         this.address = address;
         this.value = value;
         this.script = script;
-    }
-
-    public String getHash() {
-        return hash;
+        this.index = index;
     }
 
     public String getAddress() { return address; }
 
-    public Double getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public String getScript() {
-        return script;
+    public Integer getIndex() {
+        return index;
     }
+
+    public String getScipt() { return script; }
 }

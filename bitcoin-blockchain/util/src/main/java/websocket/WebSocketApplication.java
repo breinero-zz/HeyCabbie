@@ -116,7 +116,7 @@ public class WebSocketApplication {
             client.run();
             //client.addHandler( new StatusHandler() );
             client.addHandler( new BlockHandler( mongoClient ) );
-            //client.addHandler( new UnconfirmedTransactionHandler( mongoClient) );
+            client.addHandler( new UnconfirmedTransactionHandler( mongoClient) );
 
             client.sendMessage( "{\"op\":\"ping_block\"}" );
 

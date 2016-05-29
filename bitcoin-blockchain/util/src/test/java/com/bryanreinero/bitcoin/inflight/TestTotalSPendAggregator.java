@@ -10,9 +10,9 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 /**
- * Created by brein on 5/28/2016.
+ * Created by brein on 5/29/2016.
  */
-public class TestCoinInflightAggregator {
+public class TestTotalSpendAggregator {
 
     private final MongoDatabase bitcoinDB;
     private final MongoCollection<Document> transactions;
@@ -20,19 +20,16 @@ public class TestCoinInflightAggregator {
     private final SampleSet stats = new SampleSet();
     private final LogReplayer<Document> replay;
 
-    public TestCoinInflightAggregator(MongoClient mongo) {
+    public TestTotalSpendAggregator(MongoClient mongo) {
         bitcoinDB = mongo.getDatabase( "bitcoin" );
         this.transactions = bitcoinDB.getCollection( "transactions" );
         this.replay = new LogReplayer<>( transactions, new Document() );
-
-
     }
-
 
     public void getAllCoinInFlight () {
 
         Long time = System.currentTimeMillis() / 1000L;
-        final ViewBuilder<Document, String> aggregator =  new EmcumberancesInFlightAggegator() ;
+        final ViewBuilder<Document, String> aggregator =  new SpendInFlightAggregator() ;
         replay.addBuilder(aggregator);
         try (  Interval t = stats.set("logReplay") ) {
             replay.replayLogs( 0, time.intValue() );
@@ -40,12 +37,11 @@ public class TestCoinInflightAggregator {
         System.out.println ( aggregator.getView() );
     }
 
-
-    public static void main( String[] args ) {
-
+    public static void main( String[] args ){
         MongoClient client = new MongoClient();
-        TestCoinInflightAggregator test = new TestCoinInflightAggregator( client );
+        TestTotalSpendAggregator test = new TestTotalSpendAggregator( client );
         test.getAllCoinInFlight();
-
     }
+
+
 }

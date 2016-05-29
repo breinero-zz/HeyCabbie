@@ -11,20 +11,17 @@ public class Transaction {
     private final Set<TransactionOutput> outputs = new HashSet<>();
     private final Set<TransactionInput> inputs = new HashSet<>();
     private final String hash;
-    private final Integer block_height;
-    private final Long tx_index;
-
+    private final Integer tx_index;
+    private final Integer time;
 
     private Integer ver;
     private Integer size;
     private String relayed_by = null;
 
-    public Transaction( String hash, Integer block_height, Long tx_index, Integer ver, Integer size) {
+    public Transaction( String hash, Integer tx_index, Integer time ) {
         this.hash = hash;
-        this.block_height = block_height;
         this.tx_index = tx_index;
-        this.ver = ver;
-        this.size = size;
+        this.time = time;
     }
 
     public Set<TransactionOutput> getOutputs() {
@@ -47,11 +44,7 @@ public class Transaction {
         return hash;
     }
 
-    public Integer getBlock_height() {
-        return block_height;
-    }
-
-    public Long getTx_index() {
+    public Integer getTx_index() {
         return tx_index;
     }
 
