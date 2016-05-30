@@ -101,7 +101,7 @@ public class LambdaServlet extends HttpServlet {
                 replay.replayLogs(start, requestedTS );
             }
 
-            resp.setContentType("text/plain");
+            resp.setContentType("application/json");
             resp.getWriter().println(agg.getView());
         } catch (IllegalAccessException  | InstantiationException | InvocationTargetException e) {
             throw new IOException( name+"can not service request", e  );

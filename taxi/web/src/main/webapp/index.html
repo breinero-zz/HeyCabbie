@@ -1,5 +1,82 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Polylines</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+</head>
 <body>
-Hello
+<div id="map"></div>
+<script>
+
+  function parseTaxiPaths( report, map ) {
+
+        var fares = report.fares;
+        for (var i = 0; i < fares.length; i++) {
+        	var path = new Array();
+        	for (var j = 0; j < fares[ i ].route.length; j++) {
+        		path.push( { "lng": fares[ i ].route[j][0], "lat": fares[ i ].route[j][1] } );
+        	}
+
+          var route = new google.maps.Polyline({
+            path: path,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+
+        	route.setMap(map);
+        }
+    };
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: {lat: 37.783, lng: -122.417},
+      mapTypeId: google.maps.MapTypeId.TERRAIN
+    });
+
+    var ts = getParameterByName( 't' );
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+            var json = xmlhttp.responseText;
+            parseTaxiPaths( JSON.parse( json ), map );
+        }
+    }
+    var url = "/web/fare?t="+ts;
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
+
+  };
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIDThcF9sx9BY7z9-kDI0jBcGvSMJjy88&callback=initMap">
+</script>
 </body>
 </html>
