@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by brein on 5/21/2016.
  */
-public class FareBuilderWithSnap implements ViewBuilder<TaxiLog, String> {
+public class    FareBuilderWithSnap implements ViewBuilder<TaxiLog, String> {
 
     private Integer start, end;
 
@@ -64,11 +64,10 @@ public class FareBuilderWithSnap implements ViewBuilder<TaxiLog, String> {
         while(it.hasNext() ) {
 
             Fare f = it.next().getValue();
-            buf.append("{  \"taxi\": \""+f.getId()+"\"," );
-            buf.append("\n\"start\": "+f.getStart()+",");
-            buf.append("\n\"end\": "+f.getEnd()+"," );
-
-            buf.append("\"route\": [");
+            buf.append("{ \"taxi\": \""+f.getId()+"\"," );
+            buf.append(" \"start\": "+f.getStart()+",");
+            buf.append(" \"end\": "+f.getEnd()+"," );
+            buf.append(" \"route\": [");
             Iterator<List<Double>> iterator = f.getRoute().iterator();
             while( iterator.hasNext() ) {
                 List<Double> list = iterator.next();
@@ -76,12 +75,12 @@ public class FareBuilderWithSnap implements ViewBuilder<TaxiLog, String> {
                 if( iterator.hasNext() )
                     buf.append(",");
             }
-            buf.append("\n]\n}");
+            buf.append(" ] }");
             if( it.hasNext() )
                 buf.append(",");
         }
 
-        buf.append("\n\t]\n}");
+        buf.append(" ] }");
         return buf.toString();
     }
 }
