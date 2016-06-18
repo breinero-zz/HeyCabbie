@@ -2,8 +2,3 @@ rootProject.name = 'LamdbaPreso'
 
 include 'api', 'taxi:util'
 include 'taxi:web'
-include 'bitcoin-blockchain'
-include 'bitcoin-blockchain:util'
-include 'bitcoin-blockchain:websocket'
-include ':bitcoin-blockchain:util'
-include ':bitcoin-blockchain:web'
