@@ -1,4 +1,3 @@
 rootProject.name = 'LamdbaPreso'
 
-include 'api', 'taxi:util'
-include 'taxi:web'
+include 'api', 'taxi:util', 'taxi:web'
