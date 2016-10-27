@@ -15,3 +15,15 @@ Michal Piorkowski, Natasa Sarafijanovic‑Djukic, Matthias Grossglauser, CRAWDAD
 BUILD this Demo 
 from the command line run
 ./gradlew jettRun
+Useage
+
+Web Interface 
+
+Display cab rides in progess at given time in the past
+http://localhost:8081/web/fare?ts=[some timestamp bewteen 1211018404 and 1213089934]
+
+Report on total Distance each taxi has driven at given time in the past
+http://localhost:8081/web/dist?ts=[some timestamp bewteen 1211018404 and 1213089934]
+
+Report on this application's performance, displaying latency in servicing requests
+http://localhost:8081/web/stats
