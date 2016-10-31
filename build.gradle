@@ -18,6 +18,7 @@ allprojects {
     dependencies {
         testCompile group: 'junit', name: 'junit', version: '4.11'
         compile "org.mongodb:mongo-java-driver:3.2.2"
+        compile files("C:\\Users\\brein\\IdeaProjects\\Firehose\\core\\build\\libs\\Firehose-0.0.1.jar")
     }
 }
 
